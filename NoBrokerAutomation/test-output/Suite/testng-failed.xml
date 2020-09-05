@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
   <listeners>
-    <listener class-name="com.listeners.TestListener"/>
+    <listener class-name="com.listeners.Log"/>
   </listeners>
   <test thread-count="5" name="demo(failed)">
     <classes>
@@ -13,12 +13,6 @@
           <include name="setUp"/>
         </methods>
       </class> <!-- com.test.smoke.HomePageTest -->
-      <class name="com.test.smoke.LoginPageTest">
-        <methods>
-          <include name="TearDown"/>
-          <include name="testLogin"/>
-        </methods>
-      </class> <!-- com.test.smoke.LoginPageTest -->
     </classes>
   </test> <!-- demo(failed) -->
 </suite> <!-- Failed suite [Suite] -->

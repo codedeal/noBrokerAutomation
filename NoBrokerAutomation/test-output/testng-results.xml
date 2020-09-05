@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="88128" started-at="2020-09-05T06:44:30Z" finished-at="2020-09-05T06:45:58Z">
+  <suite name="Suite" duration-ms="108259" started-at="2020-09-05T07:28:46Z" finished-at="2020-09-05T07:30:34Z">
     <groups>
     </groups>
-    <test name="demo" duration-ms="88128" started-at="2020-09-05T06:44:30Z" finished-at="2020-09-05T06:45:58Z">
+    <test name="demo" duration-ms="108259" started-at="2020-09-05T07:28:46Z" finished-at="2020-09-05T07:30:34Z">
       <class name="com.test.smoke.HomePageTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.test.smoke.HomePageTest@36f0f1be]" name="setUp" is-config="true" duration-ms="8792" started-at="2020-09-05T06:44:30Z" finished-at="2020-09-05T06:44:39Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.test.smoke.HomePageTest@1a38c59b]" name="setUp" is-config="true" duration-ms="8076" started-at="2020-09-05T07:28:46Z" finished-at="2020-09-05T07:28:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="test()[pri:0, instance:com.test.smoke.HomePageTest@36f0f1be]" name="test" duration-ms="78123" started-at="2020-09-05T06:44:39Z" finished-at="2020-09-05T06:45:57Z">
+        <test-method status="PASS" signature="test()[pri:0, instance:com.test.smoke.HomePageTest@1a38c59b]" name="test" duration-ms="98993" started-at="2020-09-05T07:28:54Z" finished-at="2020-09-05T07:30:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test -->
-        <test-method status="PASS" signature="TearDown()[pri:0, instance:com.test.smoke.HomePageTest@36f0f1be]" name="TearDown" is-config="true" duration-ms="440" started-at="2020-09-05T06:45:58Z" finished-at="2020-09-05T06:45:58Z">
+        <test-method status="PASS" signature="TearDown()[pri:0, instance:com.test.smoke.HomePageTest@1a38c59b]" name="TearDown" is-config="true" duration-ms="423" started-at="2020-09-05T07:30:34Z" finished-at="2020-09-05T07:30:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TearDown -->

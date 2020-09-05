@@ -34,7 +34,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
-@Listeners(ExtentITestListenerAdapter.class)
+
 public class TestBase 
 {
 	public static AppiumDriver<MobileElement> driver;
@@ -44,10 +44,11 @@ public class TestBase
 		
 		
 		try {
+			String appPath=System.getProperty("user.dir")+"/resource/NoBroker.apk";
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 		
-		//	capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-			//capabilities.setCapability(MobileCapabilityType.APP, "/Users/Upendra/Documents/Notes/amazon_automation/AmazonAutomation/resources/Amazon_shopping.apks");
+			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+			//capabilities.setCapability(MobileCapabilityType.APP,appPath );
 			capabilities.setCapability("appPackage", "com.nobroker.app");
 			capabilities.setCapability("appActivity", "com.nobroker.app.activities.NBSplashScreen");
 			capabilities.setCapability("noReset", true);
