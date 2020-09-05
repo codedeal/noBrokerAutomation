@@ -1,0 +1,45 @@
+package com.Pages;
+
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.SetUp.TestBase;
+
+import io.appium.java_client.MobileElement;
+
+public class LoginPage  extends TestBase
+{
+	@FindBy(xpath="//*[@resource-id='in.amazon.mShop.android.shopping:id/sign_in_button']")
+	MobileElement alreadyACustomerSignIn;
+	@FindBy(xpath="//*[@resource-id='ap_email_login']")
+	MobileElement emailOrMobile;
+	@FindBy(xpath="//*[@resource-id='ap_password']")
+	MobileElement password;
+	@FindBy(xpath="//*[@resource-id='signInSubmit']")
+	MobileElement login;
+	@FindBy(xpath="//*[@resource-id='add-to-cart-button']")
+	MobileElement continueButton;
+	
+	public boolean isElementThere(MobileElement element)
+	{
+		boolean isElementPresent=false;
+		try{
+			//mobileElement =  (MobileElement) driver.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+targetResourceId+"\")");
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.visibilityOf(element));
+			isElementPresent = element.isDisplayed();
+			return isElementPresent;	
+		}catch(Exception e){
+			
+			System.out.println(e.getMessage());
+			return isElementPresent;
+		}
+		
+	}
+	}
+	public void Login(String username,String Password)
+	{
+		
+	}
+}

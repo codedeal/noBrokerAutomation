@@ -1,0 +1,54 @@
+package com.test.smoke;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.AssertJUnit;
+import java.util.List;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.Pages.CartPage;
+import com.Pages.HomePage;
+import com.Pages.PropertyListlPage;
+import com.SetUp.TestBase;
+
+public class HomePageTest extends TestBase 
+{
+	HomePage hompage;
+	PropertyListlPage productDetailPage;
+	CartPage cartPage;
+	@BeforeMethod
+	@BeforeTest
+	public void setUp()
+	{
+		SetUp();
+		hompage = new HomePage();
+	}
+	List<String>productSelected;
+	List<String>productInCart;
+	@Test
+	public void test()
+	{
+	
+		
+		  hompage.seracItem("Bangalore");
+		  hompage.selectLocalities("Marathahalli");
+		  hompage.selectLocalities("HSR Layout");
+		  hompage.includePropertyNearMe();
+		  hompage.selectBhk("1 BHK");
+		  hompage.selectBhk("2 BHK");
+		  driver.hideKeyboard();
+		  hompage.startSearch();
+		  hompage.selectPropertyFromSearchResult(1);
+		  hompage.SwipeToWrongInfor();
+		  
+	
+		
+	
+		
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+package com.test.smoke;
+
+import org.testng.annotations.BeforeTest;
+
+import com.Pages.HomePage;
+import com.SetUp.TestBase;
+
+public class HomePageTest extends TestBase 
+{
+	@BeforeTest
+	public void setUp()
+	{
+		SetUp();
+	}
+
+}

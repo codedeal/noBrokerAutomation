@@ -1,0 +1,15 @@
+package com.test.smoke;
+
+import com.Pages.LoginPage;
+import com.SetUp.TestBase;
+
+public class LoginPageTest extends TestBase 
+{
+	LoginPage loginPage;
+	public void testLogin()
+	{
+		loginPage = new LoginPage();
+		loginPage.Login("something", "something");
+		
+	}
+}

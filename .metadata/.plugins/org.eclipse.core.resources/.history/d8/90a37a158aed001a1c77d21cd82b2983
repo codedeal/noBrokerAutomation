@@ -1,0 +1,16 @@
+package com.test.smoke;
+
+final class Bike{}
+
+public class Program {
+	public static void main(String[] args) {
+		String a = new String("alpha");
+		String b = "alpha";
+		if(a==b)
+		{
+			System.out.println("something");
+		}
+		
+	}
+
+}

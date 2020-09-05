@@ -1,0 +1,17 @@
+package com.test.smoke;
+
+import org.testng.annotations.Test;
+import com.Pages.LoginPage;
+import com.SetUp.TestBase;
+
+public class LoginPageTest extends TestBase 
+{
+	LoginPage loginPage;
+	@Test
+	public void testLogin()
+	{
+		loginPage = new LoginPage();
+		loginPage.Login("something", "something");
+		
+	}
+}

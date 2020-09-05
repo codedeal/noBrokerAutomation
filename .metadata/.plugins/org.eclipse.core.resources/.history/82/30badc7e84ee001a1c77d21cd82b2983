@@ -1,0 +1,20 @@
+package com.SetUp;
+
+import org.testng.annotations.Test;
+
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
+public class TestShop 
+
+{
+	AppiumDriver<MobileElement> driver;
+	@Test
+	public void test1()
+	{ 
+		driver = Register.getDriver();
+		System.out.println("demo");
+	}
+
+}

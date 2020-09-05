@@ -1,0 +1,15 @@
+package com.Pages;
+
+import org.openqa.selenium.support.PageFactory;
+
+import com.SetUp.TestBase;
+
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+
+public class ProductPage extends TestBase
+{
+	public ProductPage() {
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+	}
+
+}

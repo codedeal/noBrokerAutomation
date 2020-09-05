@@ -1,0 +1,52 @@
+package com.listeners;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import com.SetUp.TestBase;
+import com.Utility.ExtentReport;
+import com.aventstack.extentreports.Status;
+
+public class TestListener implements ITestListener
+{
+
+	public void onTestStart(ITestResult result) {
+		// TODO Auto-generated method stub
+		TestBase base = new TestBase();
+		ExtentReport.startTest(result.getName(), result.getMethod().getDescription())
+		
+		.assignAuthor("Upendra");
+	}
+
+	public void onTestSuccess(ITestResult result) {
+		ExtentReport.getTest().log(Status.PASS, "Test Passed");
+		
+	}
+
+	public void onTestFailure(ITestResult result) {
+		ExtentReport.getTest().log(Status.SKIP, "Test Skipped");
+		
+	}
+
+	public void onTestSkipped(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStart(ITestContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onFinish(ITestContext context) {
+		ExtentReport.getReporter().flush();
+		
+	}
+
+}

@@ -1,0 +1,73 @@
+package com.Pages;
+
+import java.net.MalformedURLException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.SetUp.TestBase;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+
+public class ProductDetailPage extends TestBase
+{
+	
+	@FindBy(id="glow_subnav_icon")
+	MobileElement glowIcon;
+	
+	@FindBy(xpath="//android.view.View[@resource-id='title_feature_div']/android.view.View")
+	MobileElement productName;
+	
+	@FindBy(xpath="//android.view.View[@resource-id='atfRedesign_priceblock_priceToPay']/android.widget.EditText")
+	MobileElement productPrice;
+	
+	@FindBy(xpath="//*[@resource-id='add-to-cart-button']")
+	//@FindBy(xpath="//*[@resource-id='addToCart_feature_div']")
+	MobileElement addToCart;
+	
+	public ProductDetailPage() {
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+	}
+	
+   public void detailsOfProductSelected()
+   {
+	   System.out.println("Name of Product Selectted --->"+productName.getText());
+	   System.out.println("Price of Product Selectted --->"+productPrice.getText());
+	   
+   }
+   
+   public void addToCart()
+   {
+   
+   	try {
+			scrollToText("Add to Cart");
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+   	System.out.println("Add to cart");
+   	try {
+   		if(addToCart.isDisplayed())
+   		{
+   			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+   			System.out.println("Add to cart");
+
+   			  addToCart.click();
+   			return;
+   		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			swipVertical(550);
+		
+       //	addToCart();
+		}
+ 	
+ 	  addToCart.click();
+   	
+   }
+}

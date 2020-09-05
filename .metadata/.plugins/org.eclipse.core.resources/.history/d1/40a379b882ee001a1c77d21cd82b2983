@@ -1,0 +1,66 @@
+package com.listeners;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import com.SetUp.TestBase;
+import com.Utility.ExtentReport;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.mongodb.MapReduceCommand.OutputType;
+
+
+import gherkin.formatter.Reporter;
+ 
+public class TestListener extends TestBase implements ITestListener 
+{
+
+	public void onTestStart(ITestResult result) {
+		// TODO Auto-generated method stub
+		TestBase base = new TestBase();
+		ExtentReport.startTest(result.getName(), result.getMethod().getDescription())
+		
+		.assignAuthor("Upendra");
+	}
+
+	public void onTestSuccess(ITestResult result) {
+		ExtentReport.getTest().log(Status.PASS, "Test Passed");
+		
+	}
+
+	public void onTestFailure(ITestResult result) {
+		
+		
+	}
+
+	public void onTestSkipped(ITestResult result) {
+		ExtentReport.getTest().log(Status.SKIP, "Test Skipped");
+		
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStart(ITestContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onFinish(ITestContext context) {
+		ExtentReport.getReporter().flush();
+		
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.test.smoke;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.Pages.HomePage;
+import com.SetUp.TestBase;
+
+public class HomePageTest extends TestBase 
+{
+	HomePage hompage;
+	@BeforeTest
+	public void setUp()
+	{
+		SetUp();
+		hompage = new HomePage();
+	}
+	
+	@Test
+	public void test()
+	{
+		hompage.chooseProductRandomly();
+	}
+
+}

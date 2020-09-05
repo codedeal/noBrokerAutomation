@@ -1,0 +1,18 @@
+package com.Pages;
+
+import org.openqa.selenium.support.PageFactory;
+
+import com.SetUp.TestBase;
+
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+
+public class ProductDetailPage extends TestBase
+{
+	public ProductDetailPage() {
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+	}
+   public void detailsOfProductSelected()
+   {
+	   
+   }
+}

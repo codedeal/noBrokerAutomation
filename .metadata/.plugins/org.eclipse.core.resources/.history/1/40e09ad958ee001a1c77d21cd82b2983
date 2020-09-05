@@ -1,0 +1,8 @@
+package com.test.smoke;
+
+import com.SetUp.TestBase;
+
+public class LoginPageTest extends TestBase 
+{
+
+}

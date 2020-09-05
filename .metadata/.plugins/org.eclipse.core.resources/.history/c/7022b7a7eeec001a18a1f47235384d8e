@@ -1,0 +1,83 @@
+package com.Pages;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.SetUp.TestBase;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.offset.PointOption;
+
+public class HomePage extends TestBase 
+{
+	@FindBy(id="rs_search_src_text")
+	MobileElement searchEntryBar;
+	
+	@FindBy(id="iss_search_dropdown_item_text")
+	List<MobileElement>dropDownList; 
+	
+	@FindBy(xpath="//android.view.View[contains(@content-desc,'TV')and contains(@content-desc,'65')]")
+    List<MobileElement>listOfProducts;
+	
+
+	@FindBy(id="glow_subnav_icon")
+	MobileElement glowIcon;
+	
+    public HomePage() {
+    	
+    	PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+    	
+	}
+    
+	public void seracItem(String itemToSearch)
+	{
+		searchEntryBar.click();
+		searchEntryBar.sendKeys(itemToSearch+"\n");
+		dropDownList.get(0).click();
+		
+	       
+	}
+	
+	public void swipe()
+	{
+		TouchAction action = new TouchAction(driver);
+		PointOption p1= new PointOption();
+		Dimension dimensions = driver.manage().window().getSize();
+		Double screenHeightStart = dimensions.getHeight() * 0.5;
+		int h1 = screenHeightStart.intValue();
+		Double screenHeightEnd = dimensions.getHeight() * 0.2;
+		int h2 = screenHeightEnd.intValue();
+		action.press(p1.point(0, h1)).moveTo(p1.point(0,h2)).release().perform();
+	}
+	public void chooseProductRandomly()
+	{
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			HashMap<String, String> scrollObject = new HashMap<String, String>();
+			scrollObject.put("direction", "down");
+			scrollObject.put("direction", "down");
+			scrollObject.put("direction", "down");
+			js.executeScript("mobile:scroll", scrollObject);
+			
+			
+			}
+			catch (Exception e)
+			{
+			
+			}
+		if(listOfProducts.size()>=0)
+			listOfProducts.get(0).click();
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	}
+
+}

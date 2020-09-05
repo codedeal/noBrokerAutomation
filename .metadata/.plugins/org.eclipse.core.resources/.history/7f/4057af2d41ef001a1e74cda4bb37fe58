@@ -1,0 +1,8 @@
+package com.reports;
+
+import com.SetUp.TestBase;
+
+public class CaptureScreen extends TestBase
+{
+
+}

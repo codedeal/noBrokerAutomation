@@ -1,0 +1,151 @@
+package com.SetUp;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.HashMap;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import com.google.common.collect.ImmutableMap;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.offset.PointOption;
+
+public class TestBase 
+{
+	public static AndroidDriver<MobileElement> driver;
+	//@BeforeTest
+	public void SetUp()
+	{
+		
+		
+		try {
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			//capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
+			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+			//capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "RZ8N304K8TX");
+			//capabilities.setCapability(MobileCapabilityType.APP, "/Users/Upendra/Downloads/API Demos for Android_v1.9.0_apkpure.com.apk");
+			//capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+			capabilities.setCapability("appPackage", "in.amazon.mShop.android.shopping");
+			capabilities.setCapability("appActivity", "com.amazon.mShop.home.HomeActivity");
+			capabilities.setCapability("noReset", true);
+			
+		
+	
+	
+	        URL url = new URL("http://127.0.0.1:4723/wd/hub");
+			driver = new AndroidDriver<MobileElement>(url, capabilities);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cause is"+e.getCause());
+			System.out.println("MEssage is "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	//@Test
+	public void sampleTest() throws InterruptedException
+	{
+		System.out.println("I m in sample test");
+		Thread.sleep(10000);
+		//Already a member? Login
+		driver.findElement(By.id("com.healthifyme.basic:id/btn_login")).click();
+		driver.findElement(By.id("com.healthifyme.basic:id/btn_email_phone")).click();
+		driver.findElement(By.id("com.healthifyme.basic:id/et_username")).sendKeys("hme-testpr440@example.com");
+		driver.findElement(By.id("com.healthifyme.basic:id/et_password")).sendKeys("password");
+		driver.findElement(By.id("com.healthifyme.basic:id/btn_login_signup")).click();
+
+	}
+	
+/*	//@Test 
+	public void testing_home_page_scenarios()
+	{
+		System.out.println("I m in sample test");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+		            .xpath("//android.widget.TextView[contains(@resource-id, 'tv_actionbar_dashboard')]")));
+		for(WebElement e: driver.findElements(By.xpath("//*[contains(@resource-id, 'tv_progress')]")))
+		{
+			System.out.println(e.getText());
+		}
+		
+	}
+	 
+	  
+	   // @Test
+		public void testing_hompage_secanrio_of_water_consumed( )
+		{
+	    	String water="0 of 7 glasses consumed",reminder="Set Water Reminder";
+			System.out.println("I m in sample test");
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By
+			            .xpath("//android.widget.TextView[contains(@resource-id, 'tv_actionbar_dashboard')]")));
+			driver.findElement(By.xpath("//*[contains(@content-desc, 'Track Water')]")).click();
+     	wait.until(ExpectedConditions.presenceOfElementLocated(By
+				            .xpath("//android.widget.ImageView[@content-desc='More options']")));
+			driver.findElement(By.xpath("//android.widget.ImageView[@content-desc='More options']")).click();
+
+			for(WebElement e: driver.findElements(By.xpath("//*[contains(@resource-id, 'title')]")))
+			{
+				System.out.println(e.getText());
+				if(e.getText().equals(reminder))
+				{
+					driver.findElement(By.xpath("//*[contains(@text, 'Set Water Reminder')]")).click();
+				}
+				
+			}
+			
+		}
+	    
+	    @Test
+	    public void testing_hompage_secanrio_of_finger_swiping( )
+	    {
+	    	WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By
+			            .xpath("//android.widget.TextView[contains(@resource-id, 'tv_actionbar_dashboard')]")));
+			new TouchAction(driver).press(PointOption.point(550, 640)).waitAction().moveTo(PointOption.point(550, 60)).release().perform();
+			System.out.println("demp");
+			new TouchAction(driver).press(PointOption.point(550, 640)).waitAction().moveTo(PointOption.point(550, 60)).release().perform();
+
+            driver.findElement(By.id("com.healthifyme.basic:id/fl_steps_collapsed_summary")).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(By
+		            .xpath("//*[@content-desc=' ']/android.view.ViewGroup/android.view.View")));
+            Assert.assertEquals(driver.findElement(By.id("tv_steps_count")).getText(), "0 of 10000 steps");
+            Assert.assertEquals(driver.findElement(By.id("tv_apps_and_device_name")).getText(), "Google Fit");
+            
+            Assert.assertTrue(driver.findElement(By.id("tv_tip")).getText().contains( "Walking Tip"));
+           
+            
+	    }*/
+	
+	@AfterTest
+	public void TearDown() 
+	{
+		driver.quit();
+
+	}
+
+}

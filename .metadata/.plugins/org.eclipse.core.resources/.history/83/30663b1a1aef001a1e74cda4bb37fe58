@@ -1,0 +1,208 @@
+package com.Pages;
+
+import java.time.Duration;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import com.SetUp.TestBase;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+
+public class HomePage extends TestBase 
+{
+	@FindBy(id="homeTitle")
+	MobileElement titleOfApp;
+
+	@FindBy(id="buyLayoutText")
+	MobileElement buyOption;
+
+	@FindBy(id="searchEditHome")
+	MobileElement searchEntryBar;
+
+	@FindBy(id="spinnergo")
+	MobileElement searcEntryDropDownArrowIcon;
+
+	@FindBy(xpath="//android.widget.ListView/android.widget.CheckedTextView")
+	List<MobileElement> listOfCities;
+
+	@FindBy(id="localityAutoCompleteTxt")
+	MobileElement localitySearchArea;
+
+	@FindBy(xpath="//android.widget.LinearLayout/android.widget.CheckBox")
+	List<MobileElement> localityOptions;
+
+	@FindBy(id="nearByRadio")
+	MobileElement includeNearByProps;
+
+	@FindBy(id="searchProperty")
+	MobileElement searchProperty;
+
+
+	@FindBy(id="title")
+	List<MobileElement> titleOfProperty;
+	
+	@FindBy(id="property_thumbnail")
+	List<MobileElement> listofproperty;
+
+	public HomePage() {
+
+		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+
+	}
+	public void Wait(WebElement element)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+
+		wait.until(ExpectedConditions.visibilityOf(element)); 
+	}
+
+	public void seracItem(String itemToSearch)
+	{
+		Wait(titleOfApp);
+		System.out.println(titleOfApp.getText());
+		buyOption.click();
+		searchEntryBar.click();
+		selectCityFromDropDown(itemToSearch);
+
+
+
+	}
+	public void selectCityFromDropDown(String city)
+	{
+		searcEntryDropDownArrowIcon.click();
+		for (MobileElement mobileElement : listOfCities) 
+		{
+			System.out.println(mobileElement.getText());
+			if(mobileElement.getText().toLowerCase().contains(city.toLowerCase()))
+			{
+				mobileElement.click();
+				return;
+			}
+		}
+		System.out.println(city+"----> Not Found");
+	}
+
+	public void selectLocalities(String local)
+	{
+		localitySearchArea.sendKeys(local);
+		localityOptions.get(0).click();
+	}
+	public void includePropertyNearMe()
+	{
+		includeNearByProps.click();
+	}
+	public void selectBhk(String roomType)
+	{
+		driver.findElement(By.xpath("//*[@text='"+roomType+"']")).click();
+	}
+
+	public void startSearch()
+	{
+		searchProperty.click();
+	}
+	public void swipe()
+	{
+		String scrollViewContainer_finder = "new UiSelector().resourceIdMatches(\".*id/wish_list_bottom_sheet_layout\")";
+		String neededElement_finder = "new UiSelector().resourceIdMatches(\".*id/addToCart_feature_div\")";
+
+		WebElement abc = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(" + scrollViewContainer_finder + ")" +
+				".scrollIntoView(" + neededElement_finder + ")"));
+	}
+
+	public  void swipVertical(int y) {
+
+		System.out.println("Call swipe left...");
+		Dimension size = driver.manage().window().getSize();
+		int anchor = (int) (size.height * .15);
+		int startPoint = (int) (size.width * .10);
+		int endPoint = (int) (size.width * .50);
+
+		System.out.println("Swipe: "+anchor+", "+startPoint+", "+endPoint+" and Size: "+size);
+		new TouchAction(driver).press(PointOption.point(950, 700)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(100))).moveTo(PointOption.point(950, y)).release().perform();
+		System.out.println("Element Swiped...");
+	}
+	
+	public void selectPropertyFromSearchResult()
+	{
+	   Wait(titleOfProperty.get(0));
+	   
+	   
+	   
+	}
+	//	public ProductDetailPage chooseProductRandomly()
+	//	{
+	//	
+	//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//		
+	//		swipVertical(500);
+	//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	//		System.out.println(listOfProducts.size());
+	//		if(listOfProducts.size()>=0)
+	//			listOfProducts.get(0).click();
+	//		 WebDriverWait wait = new WebDriverWait(driver, 20);
+	//
+	//		 wait.until(ExpectedConditions.visibilityOf(glowIcon)); 
+	//		 return new ProductDetailPage();
+	//		// glowIcon.click();
+	//		
+	//		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//	}
+	//	public void scrollToText(String text)
+	//			throws MalformedURLException, InterruptedException {
+	//	    	 MobileElement el = (MobileElement) ((FindsByAndroidUIAutomator) driver)
+	//					    .findElementByAndroidUIAutomator("new UiScrollable("
+	//					        + "new UiSelector().scrollable(true)).scrollIntoView("                      
+	//					        + "new UiSelector().textContains(\""+text+"\"));");
+	//			 // el.click();
+	//	}
+	//    public void addToCart()
+	//    {
+	//    
+	//    	try {
+	//			scrollToText("Add to Cart");
+	//		} catch (MalformedURLException e1) {
+	//			// TODO Auto-generated catch block
+	//			e1.printStackTrace();
+	//		} catch (InterruptedException e1) {
+	//			// TODO Auto-generated catch block
+	//			e1.printStackTrace();
+	//		}
+	//    	System.out.println("Add to cart");
+	//    	try {
+	//    		if(addToCart.isDisplayed())
+	//    		{
+	//    			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	//    			System.out.println("Add to cart");
+	//
+	//    			  addToCart.click();
+	//    			return;
+	//    		}
+	//		} catch (Exception e) {
+	//			// TODO: handle exception
+	//			swipVertical(550);
+	//		
+	//        //	addToCart();
+	//		}
+	//  	
+	//  	  addToCart.click();
+	//    	
+	//    }
+	//    
+	//    public void proccedToCart()
+	//    {
+	//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	//		cartIcon.click();
+	//		System.out.println(productNameInCart.getText());
+	//		System.out.println(priceInCart.getText());
+	//    	
+	//    }
+}

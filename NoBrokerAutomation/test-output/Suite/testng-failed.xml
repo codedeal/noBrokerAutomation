@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="com.listeners.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="demo(failed)">
+    <classes>
+      <class name="com.test.smoke.HomePageTest">
+        <methods>
+          <include name="test"/>
+          <include name="TearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.test.smoke.HomePageTest -->
+      <class name="com.test.smoke.LoginPageTest">
+        <methods>
+          <include name="TearDown"/>
+          <include name="testLogin"/>
+        </methods>
+      </class> <!-- com.test.smoke.LoginPageTest -->
+    </classes>
+  </test> <!-- demo(failed) -->
+</suite> <!-- Failed suite [Suite] -->

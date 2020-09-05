@@ -1,0 +1,8 @@
+package com.Pages;
+
+import com.SetUp.TestBase;
+
+public class LoginPage  extends TestBase
+{
+
+}

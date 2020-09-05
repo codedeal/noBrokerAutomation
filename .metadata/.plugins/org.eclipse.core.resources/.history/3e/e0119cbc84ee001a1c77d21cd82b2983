@@ -1,0 +1,36 @@
+package com.test.smoke;
+
+final class Bike{}
+
+public class Program {
+	public static void main(String[] args) {
+		String a = new String("alpha");
+		String b = "alpha";
+		if(a==b)
+		{
+			System.out.println("something");
+		}
+		if(a.equals(b))
+		{
+			System.out.println("something more");
+		}
+		int odd=1;
+		int c=300;
+		try
+		{
+			try{
+				throw new Exception();
+			}
+			catch(Exception e)
+			{
+				c=c-100;
+			}
+		}
+		
+		catch (Exception e) {
+			// TODO: handle exception
+			c=c-100;
+		}
+		System.out.println(c);
+	}
+}

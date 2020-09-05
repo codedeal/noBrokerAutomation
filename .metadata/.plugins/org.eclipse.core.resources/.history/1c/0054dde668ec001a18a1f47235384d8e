@@ -1,0 +1,9 @@
+package com.Pages;
+
+import com.SetUp.TestBase;
+
+public class HomePage extends TestBase 
+{
+	
+
+}

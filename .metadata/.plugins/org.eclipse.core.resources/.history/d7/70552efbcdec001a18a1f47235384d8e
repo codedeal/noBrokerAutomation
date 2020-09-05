@@ -1,0 +1,7 @@
+package com.test.smoke;
+
+import com.Pages.HomePage;
+
+public class HomePageTest extends HomePage {
+
+}
